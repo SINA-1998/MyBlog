@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<body>
-    <h1>This is home.html file.</h1>
+<body dir="rtl">
+{% for article in articles %}
+    <article>
+        <h1>{{ article.title }}</h1>
+        <img src="{{ article.image }}" alt="{{ article.title }} " height="300" width="500">
+        <p>{{ article.description }}</p>
+        <br>
+    </article>
+{% endfor %}
 </body>
 </html>
