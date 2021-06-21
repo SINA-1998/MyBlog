@@ -1,11 +1,9 @@
 {% extends 'blog/base.html' %}
-{#{% load base_tags %}#}
+{% load base_tags %}
 {% load static %}
 
 
-{% block title %}
-{#    {% nav_title %} #}
-    | {{ article.title }} {% endblock %}
+{% block title %}{% nav_title %} | {{ article.title }} {% endblock %}
 
 {% block main %}
     <!-- Page Header -->

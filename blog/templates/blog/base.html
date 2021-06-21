@@ -1,5 +1,5 @@
 {% load static %}
-{#{% load base_tags %}#}
+{% load base_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>{% block title %}
-{#        {% site_title %}#}
+        {% site_title %}
     {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
@@ -40,7 +40,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand font-weight-bold" href="{% url 'blog:home' %}">
-{#        {% nav_title %}#}
+        {% nav_title %}
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
     </button>
     <div class="collapse navbar-collapse ml-4  justify-content-start" id="navbarNavDropdown">
         <ul class="navbar-nav">
-{#            {% category_navbar %}#}
+            {% category_navbar %}
         </ul>
     </div>
 </nav>

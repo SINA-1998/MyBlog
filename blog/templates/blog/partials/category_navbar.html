@@ -1,0 +1,26 @@
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'blog:home' %}">خانه</a>
+</li>
+{% for cat in category %}
+    {% if cat.parent == None %}
+        <li class="nav-item dropdown">
+        {#        <a class="nav-link" href="{% url 'blog:category' cat.slug %}" id="navbarDropdownMenuLink"#}
+        {#           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+        <a class="nav-link" href="
+{% url 'blog:category' cat.slug %}
+" role="button" id="dropdownMenuLink"
+           aria-haspopup="true" aria-expanded="false">
+            {{ cat.title }}
+        </a>
+        {% if cat.children.active %}
+            {% include 'blog/partials/category_loop.html' %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+<li class="nav-item">
+    <a class="nav-link" href="#">درباره ما</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="#">تماس با ما</a>
+</li>
+

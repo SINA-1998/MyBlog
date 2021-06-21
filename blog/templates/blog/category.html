@@ -18,6 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="alert alert-primary text-bold text-center">دسته‌بندی: {{ category.title }}</div>
                 {% for article in articles %}
                     <div class="post-preview">
                         <a href="{% url 'blog:detail' article.slug %}">
@@ -33,11 +34,10 @@
                         <div style="text-align: left">
                             <small class="post-meta text-muted small">نوشته شده توسط
                                 <a href="#" class="text-decoration-none text-success">سینا</a>
-                                {{ article.jpublish }}
-                            </small>
+                                {{ article.jpublish }}</small>
                             <small class="badge-info rounded-pill px-2 small">
                                 {% for cat in article.category_published.all %}
-                                    <a href="{% url 'blog:category' cat.slug %}" class="text-light">#{{ cat.title }}</a>
+                                    <a href="#" class="text-light">#{{ cat.title }}</a>
                                 {% endfor %}
                             </small>
 
@@ -49,12 +49,12 @@
                 <div class="clearfix">
                     {% if articles.has_previous %}
                         <a class="btn btn-primary float-right"
-                           href="{% url 'blog:index' articles.previous_page_number %}">&rarr; پست‌های
+                           href="{% url 'blog:category' category.slug articles.previous_page_number %}">&rarr; پست‌های
                             جدید</a>
                     {% endif %}
                     {% if articles.has_next %}
                         <a class="btn btn-primary float-left"
-                           href="{% url 'blog:index' articles.next_page_number %}">پست‌های قدیمی
+                           href="{% url 'blog:category' category.slug articles.next_page_number %}">پست‌های قدیمی
                             &larr;</a>
                     {% endif %}
                 </div>
