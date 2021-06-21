@@ -4,13 +4,29 @@ from extensions.utils import jalali_convertor
 
 
 # Create your models here.
+class Category(models.Model):
+    title = models.CharField(max_length=250, verbose_name="عنوان دسته‌بندی")
+    slug = models.SlugField(max_length=250, unique=True, verbose_name="اسلاگ دسته‌بندی")
+    status = models.BooleanField(default=True, verbose_name="آیا نمایش داده شود؟")
+    position = models.IntegerField(verbose_name="پوزیشن")
+
+    class Meta:
+        verbose_name = "دسته‌بندی"
+        verbose_name_plural = "دسته‌بندی‌ها"
+        ordering = ['position']
+
+    def __str__(self):
+        return self.title
+
+
 class Article(models.Model):
     STATUS_CHOICES = (
         ("d", "پیش‌نویس"),
         ("p", "منتشر شده")
     )
-    title = models.CharField(max_length=250, verbose_name="عنوان")
+    title = models.CharField(max_length=250, verbose_name="عنوان مقاله")
     slug = models.SlugField(max_length=250, unique=True, verbose_name="اسلاگ مقاله")
+    category = models.ManyToManyField(Category, verbose_name="دسته‌بندی")
     description = models.TextField(verbose_name="توضیحات")
     thumbnail = models.ImageField(upload_to="images", verbose_name="تصویر مقاله")
     publish = models.DateTimeField(default=timezone.now, verbose_name="زمان انتشار")
@@ -27,4 +43,5 @@ class Article(models.Model):
 
     def jpublish(self):
         return jalali_convertor(self.publish)
+
     jpublish.short_description = "زمان انتشار"
