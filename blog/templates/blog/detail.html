@@ -1,15 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ article.title }}</title>
-</head>
-<body dir="rtl">
-<article>
-    <h1>{{ article.title }}</h1>
-    <img src="{{ article.thumbnail.url }}" alt="{{ article.title }} " height="300" width="500">
-    <p>{{ article.description }}</p>
-    <br>
-</article>
-</body>
-</html>
+{% extends 'blog/base.html' %}
+{#{% load base_tags %}#}
+{% load static %}
+
+
+{% block title %}
+{#    {% nav_title %} #}
+    | {{ article.title }} {% endblock %}
+
+{% block main %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ article.thumbnail.url }}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h3>{{ article.title }}</h3>
+                        <br>
+                        <time class="text-small">{{ article.jpublish }}</time>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto text-justify">
+                    {{ article.description|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+{% endblock %}
