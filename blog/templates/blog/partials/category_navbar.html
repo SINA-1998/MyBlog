@@ -4,11 +4,10 @@
 {% for cat in category %}
     {% if cat.parent == None %}
         <li class="nav-item dropdown">
-        {#        <a class="nav-link" href="{% url 'blog:category' cat.slug %}" id="navbarDropdownMenuLink"#}
-        {#           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-        <a class="nav-link" href="
-{% url 'blog:category' cat.slug %}
-" role="button" id="dropdownMenuLink"
+        {#        <a class="nav-link" href="{% url 'blog:category' cat.slug %}" id="navbarDropdownMenuLink" data-toggle="dropdown"#}
+        {#           aria-haspopup="true" aria-expanded="false">#}
+        {#        </a>#}
+        <a class="nav-link" href="{% url 'blog:category' cat.slug %}" role="button" id="dropdownMenuLink"
            aria-haspopup="true" aria-expanded="false">
             {{ cat.title }}
         </a>

@@ -9,8 +9,15 @@ class ArticleManager(models.Manager):
         return self.filter(status='p')
 
 
+class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(status=True)
+
+
 # Create your models here.
 class Category(models.Model):
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, related_name='children', verbose_name='زیردسته',
+                               default=None, null=True, blank=True)
     title = models.CharField(max_length=250, verbose_name="عنوان دسته‌بندی")
     slug = models.SlugField(max_length=250, unique=True, verbose_name="اسلاگ دسته‌بندی")
     status = models.BooleanField(default=True, verbose_name="آیا نمایش داده شود؟")
@@ -19,10 +26,12 @@ class Category(models.Model):
     class Meta:
         verbose_name = "دسته‌بندی"
         verbose_name_plural = "دسته‌بندی‌ها"
-        ordering = ['position']
+        ordering = ['parent__id', 'position']
 
     def __str__(self):
         return self.title
+
+    objects = CategoryManager()
 
 
 class Article(models.Model):

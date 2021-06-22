@@ -4,7 +4,7 @@ from .models import Article, Category
 
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("position", "title", "slug", "status")
+    list_display = ("position", "title", "slug", "parent", "status")
     list_filter = (["status"])
     search_fields = ("title", "slug")
     prepopulated_fields = {"slug": ("title",)}
@@ -22,6 +22,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def category_to_str(self, obj):
         return "، ".join([category.title for category in obj.category_published()])
+
     category_to_str.short_description = "دسته‌بندی"
 
 

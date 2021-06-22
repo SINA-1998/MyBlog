@@ -10,7 +10,6 @@ def home(request, page=1):
     articles = paginator.get_page(page)
     context = {
         "articles": articles,
-        "category": Category.objects.filter(status=True)
     }
     return render(request, 'blog/home.html', context)
 
@@ -25,7 +24,7 @@ def detail(request, slug):
 def category(request, slug, page=1):
     category = get_object_or_404(Category, slug=slug, status=True)
     articles_list = category.articles.published()
-    paginator = Paginator(articles_list, 5)
+    paginator = Paginator(articles_list, 3)
     articles = paginator.get_page(page)
     context = {
         "category": category,
