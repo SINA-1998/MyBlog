@@ -22,8 +22,13 @@ def detail(request, slug):
     return render(request, 'blog/detail.html', context)
 
 
-def category(request, slug):
+def category(request, slug, page=1):
+    category = get_object_or_404(Category, slug=slug, status=True)
+    articles_list = category.articles.published()
+    paginator = Paginator(articles_list, 5)
+    articles = paginator.get_page(page)
     context = {
-        "category": get_object_or_404(Category, slug=slug, status=True)
+        "category": category,
+        "articles": articles
     }
     return render(request, 'blog/category.html', context)
