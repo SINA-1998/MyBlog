@@ -3,11 +3,11 @@
 {% load static %}
 
 
-{% block title %}{% nav_title %} | {{ article.title }} {% endblock %}
+{% block title %}{% nav_title %} | {{ object.title }} {% endblock %}
 
 {% block main %}
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('{{ article.thumbnail.url }}')">
+    <header class="masthead" style="background-image: url('{{ object.thumbnail.url }}')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -15,7 +15,7 @@
                     <div class="post-heading">
                         <h3>{{ article.title }}</h3>
                         <br>
-                        <time class="text-small">{{ article.jpublish }}</time>
+                        <time class="text-small">{{ object.jpublish }}</time>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto text-justify">
-                    {{ article.description|linebreaks }}
+                    {{ object.description|linebreaks }}
                 </div>
             </div>
         </div>
