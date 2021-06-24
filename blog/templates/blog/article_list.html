@@ -36,7 +36,7 @@
                                 {{ article.jpublish }}
                             </small>
                             <small class="badge-info rounded-pill px-2 small">
-                                {% for cat in article.category_published.all %}
+                                {% for cat in article.category.active %}
                                     <a href="{% url 'blog:category' cat.slug %}" class="text-light">#{{ cat.title }}</a>
                                 {% endfor %}
                             </small>
