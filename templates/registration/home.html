@@ -5,5 +5,64 @@
 {% endblock %}
 
 {% block main %}
-    {{ user.get_full_name }} خوش آمدی
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                {#                <div class="card-header">#}
+                {#                    <h3 class="card-title">Responsive Hover Table</h3>#}
+                {##}
+                {#                    <div class="card-tools">#}
+                {#                        <div class="input-group input-group-sm" style="width: 150px;">#}
+                {#                            <input type="text" name="table_search" class="form-control float-right"#}
+                {#                                   placeholder="Search">#}
+                {##}
+                {#                            <div class="input-group-append">#}
+                {#                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>تصویر مقاله</th>
+                            <th>دسته‌بندی</th>
+                            <th>توضیحات</th>
+                            <th>نویسنده</th>
+                            <th>انتشار</th>
+                            <th>وضغیت</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for article in object_list %}
+                            <tr>
+                                <td>{{ article.title }}</td>
+                                <td><img src="{{ article.thumbnail.url }}" width="100" alt="{{ article.title }}"></td>
+                                <td>{{ article.category_to_str }}</td>
+                                <td>{{ article.description|truncatewords:10 }}</td>
+                                <td>{{ article.author.get_full_name }}</td>
+                                <td>{{ article.jpublish }}</td>
+                                <td>
+                                    {% if article.status == 'p' %}
+                                        <span class="badge badge-success">منتشر شده</span>
+                                        <a href="{% url 'blog:detail' article.slug %}" target="_blank"
+                                           class="badge badge-info">نمایش
+                                            مقاله در سایت</a>
+                                    {% else %}
+                                        <span class="badge badge-danger">پیش‌نویس</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
 {% endblock %}

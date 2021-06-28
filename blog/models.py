@@ -41,7 +41,8 @@ class Article(models.Model):
         ("d", "پیش‌نویس"),
         ("p", "منتشر شده")
     )
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles', verbose_name="نویسنده")
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles',
+                               verbose_name="نویسنده")
     title = models.CharField(max_length=250, verbose_name="عنوان مقاله")
     slug = models.SlugField(max_length=250, unique=True, verbose_name="اسلاگ مقاله")
     category = models.ManyToManyField(Category, verbose_name="دسته‌بندی", related_name="articles")
@@ -69,5 +70,10 @@ class Article(models.Model):
         return format_html("<img src='{}' width=100 height=70 style='border-radius: 10px'".format(self.thumbnail.url))
 
     thumbnail_tag.short_description = "تصویر مقاله"
+
+    def category_to_str(self):
+        return "، ".join([category.title for category in self.category.active()])
+
+    category_to_str.short_description = "دسته‌بندی"
 
     objects = ArticleManager()
