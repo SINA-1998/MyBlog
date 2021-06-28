@@ -19,5 +19,5 @@ class ArticleList(LoginRequiredMixin, ListView):
 
 class ArticleCreate(LoginRequiredMixin, CreateView):
     model = Article
-    fields = ["title", "slug", "category", "description", "thumbnail", "publish", "status", ]
+    fields = ["title", "slug", "category", "description", "thumbnail", "publish", "status", "author"]
     template_name = "registration/article_crate_update.html"

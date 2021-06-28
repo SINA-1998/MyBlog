@@ -1,8 +1,8 @@
 {% extends 'registration/base.html' %}
 
-{% block title %}
+{% block title %}{% block title-meta %}
     لیست مقالات
-{% endblock %}
+{% endblock %}{% endblock %}
 
 {% block main %}
     <div class="row">
@@ -42,7 +42,7 @@
                                 <td>{{ article.title }}</td>
                                 <td><img src="{{ article.thumbnail.url }}" width="100" alt="{{ article.title }}"></td>
                                 <td>{{ article.category_to_str }}</td>
-                                <td>{{ article.description|truncatewords:10 }}</td>
+                                <td>{{ article.description|striptags|truncatewords:10 }}</td>
                                 <td>{{ article.author.get_full_name }}</td>
                                 <td>{{ article.jpublish }}</td>
                                 <td>
