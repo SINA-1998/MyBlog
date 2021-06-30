@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView
 from blog.models import Article
+from .mixins import FieldsMixin, FormValidMixin
 
 
 # Create your views here.
@@ -17,7 +18,6 @@ class ArticleList(LoginRequiredMixin, ListView):
             return Article.objects.filter(author=self.request.user)
 
 
-class ArticleCreate(LoginRequiredMixin, CreateView):
+class ArticleCreate(LoginRequiredMixin, FormValidMixin, FieldsMixin, CreateView):
     model = Article
-    fields = ["title", "slug", "category", "description", "thumbnail", "publish", "status", "author"]
     template_name = "registration/article_crate_update.html"

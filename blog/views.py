@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from .models import Article, Category
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.models import User
+from account.models import User
 
 
 # Create your views here.
