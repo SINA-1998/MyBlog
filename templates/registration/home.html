@@ -42,7 +42,8 @@
                                 <tr>
                                     <td>
                                         {% if user.is_superuser or article.status == 'd' %}
-                                            <a href="{% url 'account:article_update' article.pk %}">{{ article.title }}</a>
+                                            <a href="{% url 'account:article_update' article.pk %}"
+                                               style="text-decoration: none">{{ article.title }}</a>
                                         {% else %}
                                             {{ article.title }}
                                         {% endif %}
@@ -58,12 +59,15 @@
                                             <span class="badge badge-success">منتشر شده</span>
                                             <a href="{% url 'blog:detail' article.slug %}" target="_blank"
                                                class="badge badge-info">نمایش
-                                                مقاله در سایت</a>
+                                                در سایت</a>
                                         {% else %}
-                                            <span class="badge badge-danger">پیش‌نویس</span>
+                                            <span class="badge badge-dark">پیش‌نویس</span>
+                                            <a href="{% url 'blog:preview' article.pk %}"
+                                               class="badge badge-secondary">پیش‌نمایش</a>
                                         {% endif %}
 
                                         {% if user.is_superuser %}
+                                            <br>
                                             <a href="{% url 'account:article_delete' article.pk %}"
                                                class="badge badge-danger">حذف</a>
                                         {% endif %}

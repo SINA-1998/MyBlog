@@ -3,6 +3,7 @@ from .models import Article, Category
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from account.models import User
+from account.mixins import AuthorAccessMixin
 
 
 # Create your views here.
@@ -64,30 +65,8 @@ class AuthorList(ListView):
         context['author'] = author
         return context
 
-# def home(request, page=1):
-#     articles_list = Article.objects.published()
-#     paginator = Paginator(articles_list, 5)
-#     articles = paginator.get_page(page)
-#     context = {
-#         "articles": articles,
-#     }
-#     return render(request, 'blog/home.html', context)
 
-
-# def detail(request, slug):
-#     context = {
-#         "article": get_object_or_404(Article.objects.published(), slug=slug)
-#     }
-#     return render(request, 'blog/detail.html', context)
-
-
-# def category(request, slug, page=1):
-#     category = get_object_or_404(Category, slug=slug, status=True)
-#     articles_list = category.articles.published()
-#     paginator = Paginator(articles_list, 3)
-#     articles = paginator.get_page(page)
-#     context = {
-#         "category": category,
-#         "articles": articles
-#     }
-#     return render(request, 'blog/category.html', context)
+class ArticlePreview(AuthorAccessMixin, DetailView):
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Article, pk=pk)
