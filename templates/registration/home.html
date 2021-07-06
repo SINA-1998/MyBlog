@@ -39,7 +39,13 @@
                         <tbody>
                         {% for article in object_list %}
                             <tr>
-                                <td>{{ article.title }}</td>
+                                <td>
+                                    {% if user.is_superuser or article.status == 'd' %}
+                                        <a href="{% url 'account:article_update' article.pk %}">{{ article.title }}</a>
+                                    {% else %}
+                                        {{ article.title }}
+                                    {% endif %}
+                                </td>
                                 <td><img src="{{ article.thumbnail.url }}" width="100" alt="{{ article.title }}"></td>
                                 <td>{{ article.category_to_str }}</td>
                                 <td>{{ article.description|striptags|truncatewords:10 }}</td>
@@ -53,6 +59,11 @@
                                             مقاله در سایت</a>
                                     {% else %}
                                         <span class="badge badge-danger">پیش‌نویس</span>
+                                    {% endif %}
+
+                                    {% if user.is_superuser %}
+                                        <a href="{% url 'account:article_delete' article.pk %}"
+                                           class="badge badge-danger">حذف</a>
                                     {% endif %}
                                 </td>
                             </tr>
