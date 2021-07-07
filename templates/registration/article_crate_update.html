@@ -40,6 +40,9 @@
                             <div class="form-group col-md-6 mb-0">
                                 {{ form.status|as_crispy_field }}
                             </div>
+                            <div class="form-group col-md-4 my-auto">
+                                {{ form.is_special|as_crispy_field }}
+                            </div>
                         {% endif %}
                     </div>
                     <button class="btn btn-success mb-3">ارسال مقاله</button>
