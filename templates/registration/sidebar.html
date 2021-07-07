@@ -29,31 +29,27 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-newspaper"></i>
-                        <p>
-                            مقالات
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            {% link request 'home' 'لیست مقالات' 'fa-list-alt' %}
-                        </li>
-                        <li class="nav-item">
-                            {% link request 'article_create' 'افزدودن مقاله' 'fa-plus-square' %}
-                        </li>
-                    </ul>
-                </li>
+                {% if user.is_superuser or user.is_author %}
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-newspaper"></i>
+                            <p>
+                                مقالات
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                {% link request 'home' 'لیست مقالات' 'fa-list-alt' %}
+                            </li>
+                            <li class="nav-item">
+                                {% link request 'article_create' 'افزدودن مقاله' 'fa-plus-square' %}
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user-alt"></i>
-                        <p>
-                            پروفایل
-                            <span class="right badge badge-danger">جدید</span>
-                        </p>
-                    </a>
+                    {% link request 'profile' 'پروفایل کاربری' 'fa-user-alt' %}
                 </li>
                 {#                <li class="nav-item has-treeview">#}
                 {#                    <a href="#" class="nav-link">#}
