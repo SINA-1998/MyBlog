@@ -41,7 +41,7 @@
                             {% for article in object_list %}
                                 <tr>
                                     <td>
-                                        {% if user.is_superuser or article.status == 'd' %}
+                                        {% if user.is_superuser or article.status in 'dn'|make_list %}
                                             <a href="{% url 'account:article_update' article.pk %}"
                                                style="text-decoration: none">{{ article.title }}</a>
                                         {% else %}
@@ -60,8 +60,18 @@
                                             <a href="{% url 'blog:detail' article.slug %}" target="_blank"
                                                class="badge badge-info">نمایش
                                                 در سایت</a>
+                                        {% elif article.status == 'i' %}
+                                            <span class="badge badge-light">درحال بررسی</span>
+                                            {% if user.is_superuser %}
+                                                <a href="{% url 'blog:preview' article.pk %}"
+                                                   class="badge badge-secondary">پیش‌نمایش</a>
+                                            {% endif %}
                                         {% else %}
-                                            <span class="badge badge-dark">پیش‌نویس</span>
+                                            {% if article.status == 'd' %}
+                                                <span class="badge badge-dark">پیش‌نویس</span>
+                                            {% else %}
+                                                <span class="badge badge-warning">تایید نشده</span>
+                                            {% endif %}
                                             <a href="{% url 'blog:preview' article.pk %}"
                                                class="badge badge-secondary">پیش‌نمایش</a>
                                         {% endif %}
