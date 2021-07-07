@@ -13,9 +13,14 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-heading">
-                        <h3>{{ article.title }}</h3>
+                        <h1>
+                            {{ article.title }}
+                        </h1>
                         <br>
                         <time class="text-small">{{ object.jpublish }}</time>
+                        {% if article.is_special %}
+                            <span class="badge badge-danger" style="font-size: medium">ویژه</span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -30,8 +35,9 @@
                         {% if user.is_authenticated and user.is_special_user or user.is_superuser or user == object.author %}
                             {{ object.description|safe }}
                         {% else %}
-                            <p>این مقاله ویژه است و برای مشاهده‌ي آن باید <a href="#"
-                                                                             style="text-decoration:none; color: gold; -webkit-text-stroke: 1px black; font-weight: bold ">اشتراک
+                            {{ article.description|striptags|truncatewords:30 }}
+                            <p class="alert alert-warning">این مقاله ویژه است و برای مشاهده‌ي آن باید <a href="#"
+                                                                                                         style="text-decoration:none; color: blue; font-weight: bold ">اشتراک
                                 ویژه</a> تهیه نمایید.</p>
                         {% endif %}
                     {% else %}

@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from blog.models import Article
 
 
@@ -34,6 +34,14 @@ class AuthorAccessMixin:
             return super().dispatch(request, *args, **kwargs)
         else:
             raise Http404("You can not see this page! ")
+
+
+class AuthorsAccessMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser or request.user.is_author:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            redirect('account:profile')
 
 
 class SuperuserAccessMixin:
