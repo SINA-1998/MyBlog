@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load base_tags %}
 {% load static %}
-
+{% load comment_tags %}
 
 {% block title %}{% nav_title %} | {{ object.title }} {% endblock %}
 
@@ -43,6 +43,7 @@
                     {% else %}
                         {{ object.description|safe }}
                     {% endif %}
+                    {% render_comments object request %}
                 </div>
             </div>
         </div>
