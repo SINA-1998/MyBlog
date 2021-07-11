@@ -40,8 +40,23 @@
                             <div class="form-group col-md-6 mb-0">
                                 {{ form.status|as_crispy_field }}
                             </div>
+                        {% else %}
+                            <div class="form-group col-md-6 mb-0">
+                                <div id="div_id_status" class="form-group">
+                                    <label for="id_status" class=" requiredField">
+                                        وضغیت<span class="asteriskField">*</span>
+                                    </label>
+                                    <div class="">
+                                        <select name="status" class="select form-control" required="" id="id_status">
+                                            <option value="" selected="">---------</option>
+                                            <option value="d">پیش‌نویس</option>
+                                            <option value="i">ارسال برای ادمین</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
-                        <div class="form-group col-md-6 my-auto">
+                        <div class="form-group col-md-12 my-auto">
                             {{ form.is_special|as_crispy_field }}
                         </div>
                     </div>
