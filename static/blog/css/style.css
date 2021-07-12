@@ -211,3 +211,24 @@ blockquote {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+.popular_articles {
+    left: -240px;
+    position: absolute;
+    width: 240px;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #bfbf;
+    top: 0;
+    box-shadow: -5px 5px 5px 5px #869486;
+}
+
+.popular_articles h5 {
+    font-weight: bold;
+}
+
+.popular_articles a {
+    font-weight: normal;
+    text-decoration: none;
+    font-size: medium;
+}

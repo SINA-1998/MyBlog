@@ -6,7 +6,6 @@ from .models import Article, Category, IPAddress
 
 # For disable action use this statement 👇
 # admin.site.disable_action("action name")
-
 def make_published(modeladmin, request, queryset):
     rows_updated = queryset.update(status="p")
     if rows_updated == 1:
