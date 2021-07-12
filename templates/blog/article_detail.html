@@ -2,6 +2,7 @@
 {% load base_tags %}
 {% load static %}
 {% load comment_tags %}
+{% load ratings %}
 
 {% block title %}{% nav_title %} | {{ object.title }} {% endblock %}
 
@@ -18,6 +19,11 @@
                         </h1>
                         <br>
                         <time class="text-small">{{ object.jpublish }}</time>
+
+                        <div>
+                            {% ratings object %}
+                        </div>
+
                         {% if article.is_special %}
                             <span class="badge badge-danger" style="font-size: medium">ویژه</span>
                         {% endif %}
