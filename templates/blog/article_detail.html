@@ -19,11 +19,10 @@
                         </h1>
                         <br>
                         <time class="text-small">{{ object.jpublish }}</time>
-
+                        <small style="font-weight: lighter">- بازدیدها: {{ object.hits.count }}</small>
                         <div>
                             {% ratings object %}
                         </div>
-
                         {% if article.is_special %}
                             <span class="badge badge-danger" style="font-size: medium">ویژه</span>
                         {% endif %}

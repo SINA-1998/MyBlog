@@ -10,17 +10,23 @@ from account.mixins import AuthorAccessMixin
 
 class ArticleList(ListView):
     queryset = Article.objects.published()
-    paginate_by = 4
+    paginate_by = 8
 
 
 class ArticleDetailView(DetailView):
     def get_object(self, queryset=None):
         slug = self.kwargs.get('slug')
-        return get_object_or_404(Article.objects.published(), slug=slug)
+        article = get_object_or_404(Article.objects.published(), slug=slug)
+        ip_address = self.request.user.ip_address
+
+        if ip_address not in article.hits.all():
+            article.hits.add(ip_address)
+
+        return article
 
 
 class CategoryList(ListView):
-    paginate_by = 4
+    paginate_by = 8
     template_name = 'blog/category_list.html'
 
     def get_queryset(self):
@@ -35,7 +41,7 @@ class CategoryList(ListView):
         return context
 
     class CategoryList(ListView):
-        paginate_by = 4
+        paginate_by = 8
         template_name = 'blog/category_list.html'
 
         def get_queryset(self):
@@ -51,7 +57,7 @@ class CategoryList(ListView):
 
 
 class AuthorList(ListView):
-    paginate_by = 4
+    paginate_by = 8
     template_name = 'blog/author_list.html'
 
     def get_queryset(self):
