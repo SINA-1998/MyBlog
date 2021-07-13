@@ -212,15 +212,19 @@ blockquote {
     padding-bottom: 0;
 }
 
-.popular_articles {
+aside {
     left: -240px;
     position: absolute;
     width: 240px;
+    top: 0;
+}
+
+.popular_articles {
     border-radius: 10px;
     padding: 20px;
     border: 1px solid #bfbf;
-    top: 0;
     box-shadow: -5px 5px 5px 5px #869486;
+    margin-bottom: 20px;
 }
 
 .popular_articles h5 {
@@ -232,3 +236,5 @@ blockquote {
     text-decoration: none;
     font-size: medium;
 }
+
+
