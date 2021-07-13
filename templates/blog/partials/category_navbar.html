@@ -25,4 +25,11 @@
 <li class="nav-item">
     <a class="nav-link" href="{% url 'login' %}">ورود</a>
 </li>
+<div>
+    <form class="form-inline" action="{% url 'blog:search' %}">
+        <input type="text" name="q" class="form-control" placeholder="جستجو...">
+        <button class="btn btn-success" style="padding: 8px; margin-right: 5px; border-radius: 5px"><i
+                class="fas fa-search"></i></button>
+    </form>
+</div>
 
